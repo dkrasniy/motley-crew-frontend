@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-function Login() {
-    const [signInAttempted, setSignInAttempted] = useState(false)
+function Login() { 
     const [signInProgress, setSignInProgress] = useState(false)
-
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault()
         setSignInProgress(true)
@@ -17,7 +15,7 @@ function Login() {
             password:'S4!APgjuaDG5'
           };
       
-          axios.post(`https://mcbackenddev.herokuapp.com/api/auth/login`, { user })
+          axios.post(`https://mcbackenddev.herokuapp.com/api/auth/login/`, { user })
             .then(res => {
               console.log(res);
               console.log(res.data);
