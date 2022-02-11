@@ -1,25 +1,37 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-function Login() { 
+function Login() {
     const [signInProgress, setSignInProgress] = useState(false)
- 
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setSignInProgress(true)
 
 
 
-        const user = {
-            username: 'ecovertms', 
-            password:'S4!APgjuaDG5'
-          };
-      
-          axios.post(`https://mcbackenddev.herokuapp.com/api/auth/login`,  JSON.stringify(user))
-            .then(res => {
-              console.log(res);
-              console.log(res.data);
-            }) 
+        var data = JSON.stringify({
+            "username": "ecovertms",
+            "password": "S4!APgjuaDG5"
+        });
+
+        var config = {
+            method: 'post',
+            url: 'https://mcbackenddev.herokuapp.com/api/auth/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
 
 
         // setTimeout(() => {
@@ -32,7 +44,7 @@ function Login() {
 
 
     return <div className='max-w-lg mx-auto'>
-<h1>Login to Motley Ceew</h1>
+        <h1>Login to Motley Ceew</h1>
         <form className="space-y-8 bg-white p-8 rounded-xl w-full" action="#" method="POST">
             <div>
                 <label htmlFor="email" className="text-left block text-sm font-medium text-gray-700">
@@ -71,7 +83,7 @@ function Login() {
             <div>
                 <button
                     onClick={(e) => {
-                      handleSubmit(e)
+                        handleSubmit(e)
 
 
                     }}
