@@ -15,7 +15,7 @@ function Login() {
             password:'S4!APgjuaDG5'
           };
       
-          axios.post(`https://mcbackenddev.herokuapp.com/api/auth/login/`, { user })
+          axios.post(`https://mcbackenddev.herokuapp.com/api/auth/login`, { user })
             .then(res => {
               console.log(res);
               console.log(res.data);
