@@ -1,39 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { instance } from "../client";
-import CONFIG from '../config'
-import Button from '../components/atoms/Button'
+import React, { useState } from "react";
+import { axiosInstance } from "../client";
+// import CONFIG from "../config";
+import Button from "../components/atoms/Button";
 
 function Login() {
-
   const [signInProgress, setSignInProgress] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSignInProgress(true);
 
-    var data = JSON.stringify({
+    var data = {
       username: "ecovertmc",
       password: "S4!APgjuaDG5",
-    });
-
-    var config = {
-      method: "post",
-      url: `${CONFIG.BACKEND_ENDPOINT}/api/auth/login`,
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    
     };
 
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
+    axiosInstance
+      // path, data, config
+      .post("/auth/login", data, {
+        withCredentials: true,
       })
-      .catch(function (error) {
-        console.log(error);
+      .then((r) => {
+        console.log(r);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => {
+        setSignInProgress(false);
       });
 
     // setTimeout(() => {
@@ -43,28 +35,9 @@ function Login() {
     // }, 1500);
   };
 
-  useEffect(() => {
-    function getData() {
-      instance
-        .get("/")
-        .then((response) => {
-          console.log(response.data);
-
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
-    getData();
-  }, []);
-
-
-
   return (
     <div className="h-screen mx-auto bg-gray-100 flex items-center justify-center">
       <div className="max-w-sm">
-
         <form
           className="space-y-8 bg-white p-8 rounded-xl w-full"
           action="#"
@@ -72,8 +45,9 @@ function Login() {
         >
           <div>
             <h1 className="font-bold text-lg">Welcome</h1>
-            <p className="text-gray-600">By logging in you accept our Privacy Policy and Terms of Service.</p>
-
+            <p className="text-gray-600">
+              By logging in you accept our Privacy Policy and Terms of Service.
+            </p>
           </div>
           <div>
             <label
@@ -112,17 +86,19 @@ function Login() {
           </div>
 
           <div>
-
-            <Button loading={signInProgress} onClick={(e) => {
-              handleSubmit(e);
-            }}
-              type="submit" className="w-full py-3">Sign In</Button>
-
-
+            <Button
+              loading={signInProgress}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+              type="submit"
+              className="w-full py-3"
+            >
+              Sign In
+            </Button>
           </div>
         </form>
       </div>
-
     </div>
   );
 }

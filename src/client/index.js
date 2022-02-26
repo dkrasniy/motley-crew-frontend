@@ -1,17 +1,12 @@
 import axios from "axios";
 
-/*
-const instance = axios.create({
-    baseURL: 'https://mcbackenddev.herokuapp.com/api/',
-    timeout: 1000,
-    //headers: {'X-Custom-Header': 'foobar'}
-  });
+const axiosInstance = axios.create({
+  // baseURL: "http://localhost:8000/api/",
+  baseURL: "https://mcbackenddev.herokuapp.com/api/",
+  timeout: 3000,
+  xsrfCookieName: "csrftoken",
+  xsrfHeaderName: "X-CSRFToken",
+  //headers: {'X-Custom-Header': 'foobar'}
+});
 
-  */
-  const instance = axios.create({
-    baseURL: 'https://randomuser.me/api/',
-    timeout: 1000,
-    //headers: {'X-Custom-Header': 'foobar'}
-  });
-
-export {instance};
+export { axiosInstance };
