@@ -38,6 +38,25 @@ function Login() {
   return (
     <div className="h-screen mx-auto bg-gray-100 flex items-center justify-center">
       <div className="max-w-sm">
+
+ 
+        <button className="bg-red-500 p-4" onClick={()=>{
+ 
+
+          axiosInstance
+          // path, data, config
+          .get("/csrf_cookie")
+          .then((r) => {
+            console.log(r);
+          })
+          .catch((e) => console.log(e))
+          .finally(() => {
+            setSignInProgress(false);
+          });
+
+        }}>CSRF </button>
+
+
         <form
           className="space-y-8 bg-white p-8 rounded-xl w-full"
           action="#"
