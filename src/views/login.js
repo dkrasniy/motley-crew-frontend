@@ -45,7 +45,9 @@ function Login() {
 
           axiosInstance
           // path, data, config
-          .get("/csrf_cookie")
+          .get("/folders",{
+            withCredentials: true,
+          })
           .then((r) => {
             console.log(r);
           })
@@ -54,7 +56,7 @@ function Login() {
             setSignInProgress(false);
           });
 
-        }}>CSRF </button>
+        }}>Get Folders (GET) </button>
 
 
         <form
