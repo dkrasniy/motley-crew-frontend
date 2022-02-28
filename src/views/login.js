@@ -1,71 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { axiosInstance } from "../client";
+import { AuthContext } from "../components/AuthProvider";
 // import CONFIG from "../config";
 import Button from "../components/atoms/Button";
 
 function Login() {
+
+  const {login } = useContext(AuthContext); 
+
   const [signInProgress, setSignInProgress] = useState(false);
+
+  const [username, setUsername] = useState("ecovertmc"); 
+  const [password, setPassword] = useState("S4!APgjuaDG5");
+ 
+
+  const getProfileInfo = () => {
+    axiosInstance
+      // path, data, config
+      .get("/profile", {
+        withCredentials: true,
+      })
+      .then((r) => {
+        console.log(r.data.data.username); 
+      })
+      .catch((e) => console.log(e));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSignInProgress(true);
 
-    var data = {
-      username: "ecovertmc",
-      password: "S4!APgjuaDG5",
-    };
-
-    axiosInstance
-      // path, data, config
-      .post("/auth/login", data, {
-        withCredentials: true,
-      })
-      .then((r) => {
-        console.log(r);
-      })
-      .catch((e) => console.log(e))
-      .finally(() => {
-        setSignInProgress(false);
-      });
-
-    // setTimeout(() => {
-
-    //     setSignInAttempted(true)
-    //     setSignInProgress(false)
-    // }, 1500);
+    login("ecovertmc", "S4!APgjuaDG5")
+  
   };
 
   return (
     <div className="h-screen mx-auto bg-gray-100 flex items-center justify-center">
       <div className="max-w-sm">
 
- 
-        <button className="bg-red-500 p-4" onClick={()=>{
- 
-
-          axiosInstance
-          // path, data, config
-          .get("/folders",{
-            withCredentials: true,
-          })
-          .then((r) => {
-            console.log(r);
-          })
-          .catch((e) => console.log(e))
-          .finally(() => {
-            setSignInProgress(false);
-          });
-
-        }}>Get Folders (GET) </button>
-
 
         <form
-          className="space-y-8 bg-white p-8 rounded-xl w-full"
+          className="space-y-4 bg-white p-8 rounded-xl w-full"
           action="#"
           method="POST"
         >
           <div>
-            <h1 className="font-bold text-lg">Welcome</h1>
+            <h1 className="font-bold text-xl mb-1">Welcome</h1>
             <p className="text-gray-600">
               By logging in you accept our Privacy Policy and Terms of Service.
             </p>
@@ -83,6 +63,8 @@ function Login() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                value={username}
+                onChange={(e)=>setUsername(e.target.value)} 
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
@@ -101,11 +83,12 @@ function Login() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg   placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-          </div>
-
+          </div> 
           <div>
             <Button
               loading={signInProgress}
@@ -119,7 +102,11 @@ function Login() {
             </Button>
           </div>
         </form>
+ 
       </div>
+
+
+    
     </div>
   );
 }

@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css'; 
+import './index.css';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import Router from './routes';
+import Router from './routes'; 
 
 ReactDOM.render(
   <BrowserRouter>
-  <Router />
-</BrowserRouter>,
+
+    <Router />
+
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
