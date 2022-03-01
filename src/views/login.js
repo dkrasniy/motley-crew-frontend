@@ -13,19 +13,6 @@ function Login() {
   const [username, setUsername] = useState("ecovertmc"); 
   const [password, setPassword] = useState("S4!APgjuaDG5");
  
-
-  // const getProfileInfo = () => {
-  //   axiosInstance
-  //     // path, data, config
-  //     .get("/profile", {
-  //       withCredentials: true,
-  //     })
-  //     .then((r) => {
-  //       console.log(r.data.data.username); 
-  //     })
-  //     .catch((e) => console.log(e));
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setSignInProgress(true);

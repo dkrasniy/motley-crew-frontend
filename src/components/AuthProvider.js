@@ -35,13 +35,32 @@ export const AuthProvider = ({ children }) => {
     })
     .catch((e) => console.log(e));
 
-    
+
     setUser({ username: "" }); 
     window.localStorage.removeItem("user");
 
     navigate("/login");
   };
  
+  const getUserProfileDetails = () => {
+  
+   // get all the user details for logged in account
+   axiosInstance
+   // path, data, config
+   .get("/profile", {
+     withCredentials: true,
+   })
+   .then((r) => { 
+     window.localStorage.setItem("user",
+     JSON.stringify({...r.data.data})
+   );
+
+   setUser({...r.data.data })
+
+   })
+   .catch((e) => console.log(e));
+
+  };
  
   async function isUserLoggedIn() {
 
@@ -63,7 +82,11 @@ export const AuthProvider = ({ children }) => {
     window.localStorage.getItem("user");
     //get info from localstorage and set in context state
 
-    if (user) setUser(JSON.parse(user));
+    if (user) {
+      setUser(JSON.parse(user));
+    }  else {
+      getUserProfileDetails()
+    }
 
   }, []);
 
@@ -93,13 +116,9 @@ export const AuthProvider = ({ children }) => {
 
               if(!r.data.error) {
               
-                navigate(`/dashboard`);
+                navigate(`/dashboard`); 
 
-                 window.localStorage.setItem("user",
-                      JSON.stringify({username: r.data.data.username})
-                  );
-
-                setUser({ username: r.data.data.username })
+                getUserProfileDetails();
 
               }
 

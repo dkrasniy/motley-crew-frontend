@@ -6,6 +6,7 @@ import { AuthProvider } from "../components/AuthProvider";
 import RequireAuth from '../components/ReqAuth'
 import PublicRoute from "../components/PublicRoute";
 import Inbox from "../views/inbox";
+import Folder from "../views/folder";
 
 
 export default function Router() {
@@ -17,6 +18,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<Link to={"/login"}>Login</Link>} />
           <Route path="/dashboard" element={<RequireAuth><Inbox/></RequireAuth>} />
+          <Route path="/folder/:folderId" element={<RequireAuth><Folder/></RequireAuth>} /> 
           <Route path="/create/new" element={<RequireAuth><CreateNew /></RequireAuth>} />
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} /> 
         </Routes>
