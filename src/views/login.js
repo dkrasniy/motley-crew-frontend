@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     setSignInProgress(true);
 
-    login("ecovertmc", "S4!APgjuaDG5")
+    login(username, password)
   
   };
 

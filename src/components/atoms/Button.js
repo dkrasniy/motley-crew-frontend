@@ -3,7 +3,7 @@ import { Spinner } from "./Spinner";
 import {  Link } from "react-router-dom";
 
   const sizeClassnames = {
-    big: "py-2 px-5 text-sm rounded-xl font-semibold text-sm  ",
+    big: "py-3 px-5 text-sm rounded-xl font-semibold text-sm  ",
     small: "px-2 py-1 text-xs rounded-lg font-semibold md:text-sm", 
   };
   

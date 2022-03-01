@@ -2,6 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import {  Navigate} from "react-router-dom";
+import Login from "../views/login";
 import { Spinner } from "./atoms/Spinner";
 import { AuthContext } from "./AuthProvider";
 
@@ -19,9 +20,15 @@ export default function RequireAuth({ children }) {
     })
  
     if(loading) {
-        return  <Spinner/>
+        return  <div className="flex items-center justify-center"><Spinner/></div>
     } 
 
-    return loggedIn ?  children : <Navigate to="/login" replace />
+    if(loggedIn == false && !loading && loggedIn != null)  {
+        return  <Login/>
+    }
+
+    return loggedIn ?  children : <Spinner/>
+
+   
 
 }
