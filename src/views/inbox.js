@@ -3,11 +3,12 @@ import Button from "../components/atoms/Button";
 import { AuthContext } from "../components/AuthProvider";
 import { axiosInstance } from "../client";
 import FolderList from "../components/FolderList";
+import Layout from "../components/Layout";
 
 
 function Inbox() {
 
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, config } = useContext(AuthContext);
 
   const [folderData, setFolderData] = useState([])
 
@@ -16,9 +17,7 @@ function Inbox() {
   useEffect(() => {
     axiosInstance
       // path, data, config
-      .get("/folders", {
-        withCredentials: true,
-      })
+      .get("/folders", config)
       .then((r) => {
 
         setFolderData(r.data.data)
@@ -31,15 +30,20 @@ function Inbox() {
 
 
   return (
-    <div className="max-w-3xl mx-auto my-6 px-4 md:px-6">
-      <b>Welcome, {user.username}!</b> 
-
+    <Layout>
+    <div className="max-w-4xl mx-auto my-6 px-4 md:px-6">
+      <div className="flex justify-between">
+      <b className="text-xl">Welcome, {user.username}!</b> 
+      <Button to={'/create/new'} className="inline-flex">New Folder</Button> 
+      </div>
+     
       <div className="bg-gray-50 rounded-xl p-8 my-6">
     
         <FolderList data={folderData} loading={loadingFolders} />
       </div> 
 
     </div>
+    </Layout>
   );
 }
 

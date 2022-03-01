@@ -12,44 +12,35 @@ export const AuthContext = React.createContext({
   },
   login: () => {},
   logout: () => {},
+  config: () => {}
 });
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({ username: "" });
- 
+  const [token, setToken] = useState(null);
+
   const [loggingInStatus] = useState("Log in");
 
   const [errors, setErrors] = useState([]); 
-
-  
-  const logout = () => {
-  
-    axiosInstance
-    // path, data, config
-    .post("/auth/logout", {
-      withCredentials: true,
-    })
-    .then((r) => {
-      console.log("Logged In",r.data); 
-
-    })
-    .catch((e) => console.log(e));
-
+ 
+  const logout = () => { 
 
     setUser({ username: "" }); 
     window.localStorage.removeItem("user");
 
+
+    setToken(null); 
+    window.localStorage.removeItem("access_token");
+ 
     navigate("/login");
+
   };
  
-  const getUserProfileDetails = () => {
-  
+  const getUserProfileDetails = () => {  
    // get all the user details for logged in account
    axiosInstance
    // path, data, config
-   .get("/profile", {
-     withCredentials: true,
-   })
+   .get("/profile", config)
    .then((r) => { 
      window.localStorage.setItem("user",
      JSON.stringify({...r.data.data})
@@ -61,16 +52,27 @@ export const AuthProvider = ({ children }) => {
    .catch((e) => console.log(e));
 
   };
- 
-  async function isUserLoggedIn() {
 
-    let res = await axiosInstance.get("auth/loggedin", {
-      withCredentials: true,
-    })
-    let { data } = res.data;
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  }; 
  
-    
-    return data.authenticated 
+  async function isUserLoggedIn() {  
+ 
+    if(!token || token == undefined || token == 'undefined') {
+      return false
+    }
+     
+   const res = await axiosInstance.post("auth/token/verify", { token: token })
+       
+   let { status } = res;
+
+    if(status == 200) {
+      return true 
+    } else return false   
+   
   }
 
   let navigate = useNavigate();
@@ -78,9 +80,19 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     let user = { username: "" };
+
+    let access_token = localStorage.getItem("access_token");
+    window.localStorage.getItem("access_token");
+   
     user = localStorage.getItem("user");
     window.localStorage.getItem("user");
     //get info from localstorage and set in context state
+
+    if(access_token) {
+      setToken(access_token)
+
+      //validate the token 
+    }
 
     if (user) {
       setUser(JSON.parse(user));
@@ -93,7 +105,9 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{ 
+        token,
         user,
+        config,
         loggingInStatus: loggingInStatus,
         loginErrors: errors,
         isUserLoggedIn: isUserLoggedIn,
@@ -108,22 +122,25 @@ export const AuthProvider = ({ children }) => {
         
             axiosInstance
             // path, data, config
-            .post("/auth/login", data, {
-              withCredentials: true,
-            })
+            .post("/auth/login", data)
             .then((r) => {
-              console.log("Logged In",r.data);
+              console.log("Logged In",r.data.acccess);
 
-              if(!r.data.error) {
-              
-                navigate(`/dashboard`); 
-
-                getUserProfileDetails();
-
+              setToken(r.data.acccess) 
+              window.localStorage.setItem("access_token", r.data.access)
+ 
+              if(!r.data.error) { 
+                getUserProfileDetails(); 
               }
 
+              navigate(`/dashboard`); 
+
             })
-            .catch((e) => console.log(e));
+            .catch((e) =>
+            {
+              alert("couldnt log in")
+              console.log(e)
+            });
  
           }
 

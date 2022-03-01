@@ -1,6 +1,6 @@
 import React from "react";
 import { Spinner } from "./Spinner"; 
-import {  Link} from "react-router-dom";
+import {  Link } from "react-router-dom";
 
   const sizeClassnames = {
     big: "py-2 px-5 text-sm rounded-xl font-semibold text-sm  ",
@@ -42,7 +42,7 @@ import {  Link} from "react-router-dom";
     }
     else if(to){
    
-        return (<Link to={href} className={`font-display  flex outline-none ${sizeClassnames[size]
+        return (<Link to={to} className={`font-display  flex outline-none ${sizeClassnames[size]
         } ${transition ? `transition duration-200 ease-in-out` : ``} ${colorClassnames[color]
         } items-center justify-center ${className}`}
         {...props}>    <span className={loading ? "opacity-0" : `flex items-center`}>

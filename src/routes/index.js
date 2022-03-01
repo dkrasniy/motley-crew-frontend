@@ -16,10 +16,11 @@ export default function Router() {
     <AuthProvider>
       <div className="App">
         <Routes>
+
+          <Route path="/create/new" element={<CreateNew />} />
           <Route path="/" element={<Link to={"/login"}>Login</Link>} />
           <Route path="/dashboard" element={<RequireAuth><Inbox/></RequireAuth>} />
           <Route path="/folder/:folderId" element={<RequireAuth><Folder/></RequireAuth>} /> 
-          <Route path="/create/new" element={<RequireAuth><CreateNew /></RequireAuth>} />
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} /> 
         </Routes>
       </div>

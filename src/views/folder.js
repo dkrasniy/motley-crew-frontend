@@ -5,24 +5,23 @@ import { axiosInstance } from "../client";
 import FolderList from "../components/FolderList";
 import { Routes, Link, useParams } from "react-router-dom";
 import { Spinner } from "../components/atoms/Spinner";
+import Layout from "../components/Layout";
 
 
 function Folder() {
   
 
-  const { user } = useContext(AuthContext);
+  const { config } = useContext(AuthContext);
 
   let params = useParams();
 
-  const [currentFolder, setCurrentFolder] = useState(null)
+  const [currentFolder, setCurrentFolder] = useState({name: "-", id: ""})
   const [loadingFolder, setLoadingFolder] = useState(true)
 
   useEffect(() => {
     axiosInstance
       // path, data, config
-      .get(`/folder/${parseInt(params.folderId)}`, {
-        withCredentials: true,
-      })
+      .get(`/folder/${parseInt(params.folderId)}`, config)
       .then((r) => {
         console.log(r.data.data)
         setCurrentFolder(r.data.data)
@@ -33,18 +32,24 @@ function Folder() {
       })
   }, []);
 
+ 
 
   return (
-    <div className="max-w-3xl mx-auto my-6 px-4 md:px-6">
+    <Layout>
+    <div className="max-w-4xl mx-auto my-6 px-4 md:px-6">
       <Link className="block" to={'/dashboard'}>Back</Link>
-      <b>Folder {params.folderId}</b> 
+      <b className="text-xl"> {currentFolder.name}</b> 
       
       <div className="bg-gray-50 rounded-xl p-8 my-6">
-      <Spinner/>
+      {loadingFolder ? <Spinner/> : null}
+
+      Folder ID:  {params.folderId}
+     
        
       </div> 
 
     </div>
+    </Layout>
   );
 }
 
