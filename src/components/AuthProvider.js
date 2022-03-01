@@ -16,6 +16,8 @@ export const AuthContext = React.createContext({
 });
 
 export const AuthProvider = ({ children }) => {
+
+  
   const [user, setUser] = useState({ username: "" });
   const [token, setToken] = useState(null);
 
@@ -23,6 +25,14 @@ export const AuthProvider = ({ children }) => {
 
   const [errors, setErrors] = useState([]); 
  
+
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  }; 
+
+
   const logout = () => { 
 
     setUser({ username: "" }); 
@@ -40,7 +50,11 @@ export const AuthProvider = ({ children }) => {
    // get all the user details for logged in account
    axiosInstance
    // path, data, config
-   .get("/profile", config)
+   .get("/profile", {
+      headers: {
+        Authorization: "Bearer " + (window.localStorage.getItem("access_token")  ? window.localStorage.getItem("access_token") : ""),
+      },
+    })
    .then((r) => { 
      window.localStorage.setItem("user",
      JSON.stringify({...r.data.data})
@@ -53,11 +67,7 @@ export const AuthProvider = ({ children }) => {
 
   };
 
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  }; 
+
  
   async function isUserLoggedIn() {  
  
@@ -129,11 +139,10 @@ export const AuthProvider = ({ children }) => {
               setToken(r.data.acccess) 
               window.localStorage.setItem("access_token", r.data.access)
  
-              if(!r.data.error) { 
-                getUserProfileDetails(); 
-              }
+              getUserProfileDetails(); 
 
               navigate(`/dashboard`); 
+              window.location.reload(false);
 
             })
             .catch((e) =>
