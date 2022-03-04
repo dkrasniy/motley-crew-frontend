@@ -11,7 +11,7 @@ export default function Header () {
 
 
 <div className='border-b p-2 '> 
-<div className='max-w-4xl flex justify-between mx-auto items-center  px-4 md:px-6'>
+<div className='max-w-7xl flex justify-between mx-auto items-center  px-4 md:px-6'>
     <div>
         <Link to="/dashboard"><img className="h-8" src={logo}/></Link>
     </div>

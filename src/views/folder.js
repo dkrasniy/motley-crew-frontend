@@ -3,26 +3,47 @@ import Button from "../components/atoms/Button";
 import { AuthContext } from "../components/AuthProvider";
 import { axiosInstance } from "../client";
 import FolderList from "../components/FolderList";
-import { Routes, Link, useParams } from "react-router-dom";
+import { Routes, Link, useParams, Route } from "react-router-dom";
 import { Spinner } from "../components/atoms/Spinner";
 import Layout from "../components/Layout";
 import { useDropzone } from "react-dropzone";
+import RouteSlip from '../components/RouteSlip'
+
 
 function Folder(props) {
   const { config } = useContext(AuthContext);
 
   let params = useParams();
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
-
   const [currentFolder, setCurrentFolder] = useState({ name: "-", id: "" });
   const [loadingFolder, setLoadingFolder] = useState(true);
 
-  const files = acceptedFiles.map((file) => (
+  const {
+    acceptedFiles,
+    fileRejections,
+    getRootProps,
+    getInputProps
+  } = useDropzone({
+    accept: 'application/pdf, image/jpeg,image/png'
+  });
+
+  const acceptedFileItems = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
     </li>
   ));
+
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+      <ul>
+        {errors.map(e => (
+          <li key={e.code}>{e.message}</li>
+        ))}
+      </ul>
+    </li>
+  ));
+
   useEffect(() => {
     axiosInstance
       // path, data, config
@@ -39,25 +60,45 @@ function Folder(props) {
 
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto my-6 px-4 md:px-6">
+      <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
         <Link className="block" to={"/dashboard"}>
           Back
         </Link>
-        <b className="text-xl"> {currentFolder.name}</b>
+        <b className="text-2xl my-2"> {currentFolder.name}</b>
+       <br/> Folder ID: {params.folderId}
 
-        <div className="bg-gray-50 rounded-xl p-8 my-6">
+        <div className="my-6">
           {loadingFolder ? <Spinner /> : null}
-          Folder ID: {params.folderId}
+       
 
-          <section className="container">
-          <div {...getRootProps({ className: "dropzone border p-4 rounded border-gray-400" })}>
-            <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+          <section className="flex border-t">
+            <div className="w-full md:w-1/3 xl:w-1/4 bg-white py-6 px-2 border-r">
+            <RouteSlip/>
+            </div>
+            <div className="w-full md:w-2/3 xl:w-3/4 p-8 ">
+            <h3 className="font-semibold">Folder Contents</h3>
+
+         
+          <button {...getRootProps({ className: 'dropzone' })}  className="my-4 bg-gray-50 p-8 rounded-xl w-full">
+              <input {...getInputProps()}  className="bg-red-500 p-8 block"/>
+              <p>Drag 'n' drop some files here, or click to select files</p>
+              <em>(Only *.jpeg and *.png images will be accepted)</em>
+
+              <div className="bg-gray-100 -mb-8 -mx-8 rounded-b-xl px-8  mt-8">
+               
+              <ul>{acceptedFileItems}</ul>
+              {acceptedFileItems.length > 0 ? <div className="my-2"> <h4 className="mb-2"><b>Accepted files</b></h4>
+              <ul>{acceptedFileItems}</ul></div> : null}
+
+              {fileRejectionItems.length > 0 ? <div className="my-2"> <h4 className="mb-2"><b>Rejected files</b></h4>
+              <ul>{fileRejectionItems}</ul></div> : null}
+             
+            
+
+              </div>
+            </button>
+           
           </div>
-          <aside>
-            <h4>Files</h4>
-            <ul>{files}</ul>
-          </aside>
         </section>
         </div>
 
