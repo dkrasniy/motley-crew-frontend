@@ -31,7 +31,7 @@ function Inbox() {
 
   return (
     <Layout>
-    <div className="max-w-4xl mx-auto my-6 px-4 md:px-6">
+    <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
       <div className="flex justify-between">
       <b className="text-xl">Welcome, {user.username}!</b> 
       <Button to={'/create/new'} className="inline-flex">New Folder</Button> 
