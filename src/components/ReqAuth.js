@@ -24,7 +24,7 @@ export default function RequireAuth({ children }) {
     } 
 
     if(loggedIn == false && !loading && loggedIn != null)  {
-        return  <Login/>
+        return  <Spinner/>
     }
 
     return loggedIn ?  children : <Spinner/>
