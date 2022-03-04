@@ -16,6 +16,6 @@ export default function Header () {
         <Link to="/dashboard"><img className="h-8" src={logo}/></Link>
     </div>
 
-    <div><div className='text-sm'>Logged in as <b>{user.username}</b>  <button className="inline-flex ml-1" onClick={()=>logout()}>Log out</button></div></div></div></div>
+    <div><div className='text-sm'><Link to="/account">Logged in as <b>{user.username}</b></Link>  <button className="inline-flex ml-1" onClick={()=>logout()}>Log out</button></div></div></div></div>
     </header>
 }
