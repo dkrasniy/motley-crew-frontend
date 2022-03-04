@@ -10,6 +10,10 @@ function CreateNew() {
   const { config } = useContext(AuthContext);
 
   const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [desiredCompletionDate, setDesiredCompletionDate] = useState("")
+  const [expedite, setExpedite] = useState(false)
+  const [confidential, setConfidential] = useState(false)
   const [creatingFolder, setCreatingFolder] = useState(false)
 
   let navigate = useNavigate();
@@ -24,12 +28,13 @@ function CreateNew() {
 
     axiosInstance
     // path, data, config
-    .post(`/folder/create`, {folderName: name}, config)
+    .post(`/folder/create`, {folderName: name, description: description, desiredCompletionDate: new Date(), expedited: expedite, confidential}, config)
     .then((r) => { 
+      console.log(r);
       const {data} = r  
       setCreatingFolder(false)
 
-      navigate(`/folder/${data.data.id}`); 
+      //navigate(`/folder/${data.data.id}`); 
  
     
     })
@@ -63,8 +68,69 @@ function CreateNew() {
           value={name}
           required={true}
           onChange={(e)=>setName(e.target.value)}
-          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
+
+        <label htmlFor="description" className="text-left block text-sm font-medium text-gray-700">
+          Description
+        </label>
+
+        <input 
+          id="description"
+          name="description"
+          type="description"
+          autoComplete="description"
+          value={description}
+          required={false}
+          onChange={(e)=>setDescription(e.target.value)}
+          className="appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+
+        <label htmlFor="desiredCompletionDate" className="text-left block text-sm font-medium text-gray-700">
+          Desired Completion Date
+        </label>
+
+        <input 
+          id="desiredCompletionDate"
+          name="desiredCompletionDate"
+          type="desiredCompletionDate"
+          autoComplete="desiredCompletionDate"
+          value={desiredCompletionDate}
+          required={false}
+          onChange={(e)=>setDesiredCompletionDate(e.target.value)}
+          className="appearance-none block px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        />
+
+        <label htmlFor="expedite" className="text-left block text-sm font-medium text-gray-700">
+          Expedite
+        </label>
+
+        <input 
+          id="expedite"
+          name="expedite"
+          type="checkbox"
+          value={expedite}
+          required={false}
+          onChange={(e)=>setExpedite(true)}
+          className="mb-4"
+        />
+
+        <label htmlFor="confidential" className="text-left block text-sm font-medium text-gray-700">
+          Confidential
+        </label>
+
+        {/* change setConfidential to boolean */}
+        <input 
+          id="confidential"
+          name="confidential"
+          type="checkbox"
+          value={confidential}
+          required={false}
+          onChange={(e)=>setConfidential(true)}
+          className="mb-4"
+        />
+
+        
 
         <Button className="mt-4" type="submit" loading={creatingFolder}> Create Folder </Button>
       </form> 
