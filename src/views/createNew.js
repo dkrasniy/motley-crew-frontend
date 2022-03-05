@@ -30,11 +30,11 @@ function CreateNew() {
     // path, data, config
     .post(`/folder/create`, {folderName: name, description: description, desiredCompletionDate: new Date(), expedited: expedite, confidential}, config)
     .then((r) => { 
-      console.log(r);
+      //console.log(r);
       const {data} = r  
       setCreatingFolder(false)
 
-      //navigate(`/folder/${data.data.id}`); 
+      navigate(`/folder/${data.data.id}`); 
  
     
     })
@@ -111,7 +111,7 @@ function CreateNew() {
           type="checkbox"
           value={expedite}
           required={false}
-          onChange={(e)=>setExpedite(true)}
+          onChange={(e)=>setExpedite(e.target.checked)}
           className="mb-4"
         />
 
@@ -119,14 +119,13 @@ function CreateNew() {
           Confidential
         </label>
 
-        {/* change setConfidential to boolean */}
         <input 
           id="confidential"
           name="confidential"
           type="checkbox"
           value={confidential}
           required={false}
-          onChange={(e)=>setConfidential(true)}
+          onChange={(e)=>setConfidential(e.target.checked)}
           className="mb-4"
         />
 
