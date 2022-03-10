@@ -53,8 +53,8 @@ function Folder(props) {
       // path, data, config
       .get(`/folder/${parseInt(params.folderId)}`, config)
       .then((r) => {
-        console.log(r.data.data);
-        setCurrentFolder(r.data.data);
+        console.log(r.data);
+        setCurrentFolder(r.data);
         setLoadingFolder(false);
       })
       .catch((e) => {

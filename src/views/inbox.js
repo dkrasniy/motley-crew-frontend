@@ -20,7 +20,7 @@ function Inbox() {
       .get("/folders", config)
       .then((r) => {
 
-        setFolderData(r.data.data)
+        setFolderData(r.data)
         setLoadingFolders(false)
       })
       .catch((e) => {

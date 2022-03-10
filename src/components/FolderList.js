@@ -6,6 +6,7 @@ import FolderItem from "./FolderItem";
 
 export default function FolderList({ data, loading}) {
     
+    console.log("folder list data",data)
  
     if(loading) {
         return  <Spinner/>
