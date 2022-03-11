@@ -6,7 +6,12 @@ import Button from "../components/atoms/Button";
 
 export default function EditFolderDetails({ folderId, folderData }) {
 
+    console.log("folderData",folderData)
+
     let [isOpen, setIsOpen] = useState(false)
+
+
+    const [name, setName] = useState(folderData.name ? folderData.name : "")
 
 
     const handleSubmit = (e) => {

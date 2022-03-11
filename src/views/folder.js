@@ -18,8 +18,37 @@ function Folder(props) {
   const [loadingFolder, setLoadingFolder] = useState(true);
 
   const onDrop = useCallback(acceptedFiles => {
-    console.log("Dropped some files", acceptedFiles)
+    //console.log("Dropped some files", acceptedFiles)
+
+
+   acceptedFiles.forEach(element => {
+     
+    console.log("Eelement",element)
+
+
+    var formData = new FormData(element);
+ 
+
+
+
+
+    axios.post('/submit-files', acceptedFiles[0]).then(file => {
+      console.log(file)
+ }).catch(error => console.log(error))
+
+ 
+   });
+
+
   }, [])
+
+ 
+
+
+
+
+
+
 
   const {
     acceptedFiles,
@@ -75,7 +104,7 @@ function Folder(props) {
             <br /> Folder ID: {params.folderId}
           </div>
           <div>
-            <EditFolderDetails folderId={params.folderId} />
+            <EditFolderDetails folderId={params.folderId} folderData={currentFolder}/>
 
           
           </div>

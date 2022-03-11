@@ -24,7 +24,7 @@ function Profile() {
       <div className="space-y-4">
        <b className="text-2xl text-center block">Your Account Information</b> 
 
-        <div className="h-32 w-32 bg-green-100 rounded-full flex items-center justify-center text-7xl mx-auto">🏄‍♂️</div>
+        <div className="h-32 w-32 bg-green-100 rounded-full flex items-center justify-center text-7xl mx-auto">{user.profileImage}</div>
         <p className="text-4xl font-semibold text-center">@<b>{user.username}</b></p>
         <div className="grid grid-cols-3 gap-4 text-left">
         <p><span className="text-gray-500 block">First Name</span>{user.firstName}</p>
