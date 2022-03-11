@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import { useDropzone } from "react-dropzone";
 import RouteSlip from '../components/RouteSlip'
 import EditFolderDetails from '../components/EditFolderDetails'
+import FileList from "../components/FileList";
 
 function Folder(props) {
   const { config, token } = useContext(AuthContext);
@@ -145,7 +146,9 @@ function Folder(props) {
               <RouteSlip />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">
-              <h3 className="font-semibold">Folder Contents ({filesInFolder.length})</h3>
+              <h3 className="font-semibold mb-6">Folder Contents ({filesInFolder.length})</h3>
+
+              <FileList files={filesInFolder}/>
 
               <button {...getRootProps({ className: 'dropzone' })} className="my-4 bg-gray-50 p-8 rounded-xl w-full overflow-hidden">
                 <input {...getInputProps()} className="bg-red-500 p-8 block" />

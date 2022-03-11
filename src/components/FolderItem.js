@@ -6,8 +6,7 @@ import { Spinner } from "./atoms/Spinner";
 
 export default function FolderItem({ folder}) {
     
- console.log("folder",folder)
-
+ 
     return <Link className="block bg-white  p-4 rounded-xl border border-gray-100" to={`/folder/${folder.id}`}>
 
         <span className="font-bold block">{folder.name}</span>
