@@ -33,12 +33,11 @@ function Inbox() {
     <Layout>
     <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
       <div className="flex justify-between">
-      <b className="text-xl">Welcome, {user.username}!</b> 
-      <Button to={'/create/new'} className="inline-flex">New Folder</Button> 
+      <b className="text-xl">Inbox</b> 
+      <Button to={'/create/new'} color="secondary" className="inline-flex">New Folder</Button> 
       </div>
      
-      <div className="bg-gray-50 rounded-xl p-8 my-6">
-    
+      <div className="my-4"> 
         <FolderList data={folderData} loading={loadingFolders} />
       </div> 
 
