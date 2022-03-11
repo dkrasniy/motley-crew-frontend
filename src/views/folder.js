@@ -6,11 +6,10 @@ import { Spinner } from "../components/atoms/Spinner";
 import Layout from "../components/Layout";
 import { useDropzone } from "react-dropzone";
 import RouteSlip from '../components/RouteSlip'
-import Button from "../components/atoms/Button";
 import EditFolderDetails from '../components/EditFolderDetails'
 
 function Folder(props) {
-  const { config } = useContext(AuthContext);
+  const { config, token } = useContext(AuthContext);
 
   let params = useParams();
 
@@ -22,19 +21,31 @@ function Folder(props) {
 
 
    acceptedFiles.forEach(element => {
+
+    let name = element.name
      
-    console.log("Eelement",element)
+    console.log('eleme',element)
 
-
-    var formData = new FormData(element);
+    var formData = new FormData();
+    formData.append('file', element)
+    formData.append('name', name)
  
 
+      let formConfig = {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type":
+            "multipart/form-data; boundary=----WebKitFormBoundaryrbD7RZFR5iPWDPXE",
+        },
+      };
 
-
-
-    axios.post('/submit-files', acceptedFiles[0]).then(file => {
-      console.log(file)
- }).catch(error => console.log(error))
+      axiosInstance.post(`folder/${params.folderId}/create-file`, formData, formConfig)
+        .then((r) => {
+          console.log(r.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
  
    });
@@ -42,10 +53,7 @@ function Folder(props) {
 
   }, [])
 
- 
-
-
-
+  
 
 
 
@@ -89,6 +97,22 @@ function Folder(props) {
       .catch((e) => {
         setLoadingFolder(false);
       });
+
+
+
+
+      axiosInstance
+      // path, data, config
+      .get(`/files`, config)
+      .then((r) => {
+        console.log("get files",r.data);
+       
+      })
+      .catch((e) => {
+        console.log('error',e)
+      });
+
+
   }, []);
 
   return (
