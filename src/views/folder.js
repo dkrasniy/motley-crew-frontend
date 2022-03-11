@@ -104,7 +104,7 @@ function Folder(props) {
             <br /> Folder ID: {params.folderId}
           </div>
           <div>
-            <EditFolderDetails folderId={params.folderId} folderData={currentFolder}/>
+            <EditFolderDetails folderId={params.folderId} folderData={currentFolder} config={config} setCurrentFolder={setCurrentFolder}/>
 
           
           </div>

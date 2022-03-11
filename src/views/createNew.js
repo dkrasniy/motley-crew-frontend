@@ -12,7 +12,7 @@ function CreateNew() {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [desiredCompletionDate, setDesiredCompletionDate] = useState("")
-  const [expedite, setExpedite] = useState(false)
+  const [expedited, setExpedited] = useState(false)
   const [confidential, setConfidential] = useState(false)
   const [creatingFolder, setCreatingFolder] = useState(false)
 
@@ -28,7 +28,7 @@ function CreateNew() {
 
     axiosInstance
     // path, data, config
-    .post(`/folder/create`, {folderName: name, description: description, desiredCompletionDate: new Date(), expedited: expedite, confidential}, config)
+    .post(`/folder/create`, {folderName: name, description: description, desiredCompletionDate: new Date(), expedited: expedited, confidential}, config)
     .then((r) => { 
       //console.log(r);
       const {data} = r  
@@ -101,17 +101,17 @@ function CreateNew() {
           className="appearance-none block px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
 
-        <label htmlFor="expedite" className="text-left block text-sm font-medium text-gray-700">
+        <label htmlFor="expedited" className="text-left block text-sm font-medium text-gray-700">
           Expedite
         </label>
 
         <input 
-          id="expedite"
-          name="expedite"
+          id="expedited"
+          name="expedited"
           type="checkbox"
-          value={expedite}
+          value={expedited}
           required={false}
-          onChange={(e)=>setExpedite(e.target.checked)}
+          onChange={(e)=>setExpedited(e.target.checked)}
           className="mb-4"
         />
 
