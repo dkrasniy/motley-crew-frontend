@@ -21,14 +21,13 @@ function CreateNew() {
 
   const handleSubmit = (e) => {
     setCreatingFolder(true)
-    e.preventDefault();
-    console.log("create folder with name", name)
+    e.preventDefault(); 
 
 
 
     axiosInstance
     // path, data, config
-    .post(`/folder/create`, {folderName: name, description: description, desiredCompletionDate: new Date(), expedited: expedited, confidential}, config)
+    .post(`/folder/create`, { name, description: description, desiredCompletionDate: new Date(), expedited: expedited, confidential}, config)
     .then((r) => { 
       //console.log(r);
       const {data} = r  

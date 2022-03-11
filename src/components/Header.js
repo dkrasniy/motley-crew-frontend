@@ -17,7 +17,7 @@ export default function Header() {
                 {/* APP Branding */}
                 <div>
                     <Link to="/dashboard" className='flex items-center group'>
-                        <img className="h-10 mr-2" src={logo} /><b className='text-lg text-gray-700'>Motley</b>
+                        <img className="h-8 mr-2" src={logo} /><b className='text-lg text-gray-800'>Motley</b>
                         {/* <span className='text-gray-400 ml-1 text-xs group-hover:opacity-100 opacity-0 transition duration-500'>By Motley Crew</span> */}
                         </Link>
                 </div>

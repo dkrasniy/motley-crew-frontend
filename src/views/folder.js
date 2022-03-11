@@ -14,6 +14,8 @@ function Folder(props) {
   let params = useParams();
 
   const [currentFolder, setCurrentFolder] = useState({ name: "-", id: "" });
+  const [filesInFolder, setFilesInFolder] = useState([]);
+
   const [loadingFolder, setLoadingFolder] = useState(true);
 
   const onDrop = useCallback(acceptedFiles => {
@@ -103,10 +105,9 @@ function Folder(props) {
 
       axiosInstance
       // path, data, config
-      .get(`/files`, config)
+      .get(`/folder/${parseInt(params.folderId)}/files`, config)
       .then((r) => {
-        console.log("get files",r.data);
-       
+        setFilesInFolder(r.data.files); 
       })
       .catch((e) => {
         console.log('error',e)
@@ -144,7 +145,7 @@ function Folder(props) {
               <RouteSlip />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">
-              <h3 className="font-semibold">Folder Contents</h3>
+              <h3 className="font-semibold">Folder Contents ({filesInFolder.length})</h3>
 
               <button {...getRootProps({ className: 'dropzone' })} className="my-4 bg-gray-50 p-8 rounded-xl w-full overflow-hidden">
                 <input {...getInputProps()} className="bg-red-500 p-8 block" />
