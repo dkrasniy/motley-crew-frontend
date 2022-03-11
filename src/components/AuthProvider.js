@@ -57,10 +57,10 @@ export const AuthProvider = ({ children }) => {
     })
    .then((r) => { 
      window.localStorage.setItem("user",
-     JSON.stringify({...r.data.data})
+     JSON.stringify({...r.data})
    );
 
-   setUser({...r.data.data })
+   setUser({...r.data })
 
    })
    .catch((e) => console.log(e));
