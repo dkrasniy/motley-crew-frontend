@@ -128,6 +128,10 @@ function Folder(props) {
             </Link>
             <b className="text-2xl my-2"> {currentFolder.name}</b>
             <br /> Folder ID: {params.folderId}
+            <p>Description: {currentFolder.description}</p>
+            <p>Completion Date: {currentFolder.desiredCompletionDate}</p>
+            <p>Expedited: {currentFolder.expedited ? "Yes" : "No"}</p>
+            <p>Confidential: {currentFolder.confidential ? "Yes" : "No"}</p>
           </div>
           <div>
             <EditFolderDetails folderId={params.folderId} folderData={currentFolder} config={config} setCurrentFolder={setCurrentFolder}/>
