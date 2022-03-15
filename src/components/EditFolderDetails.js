@@ -7,12 +7,12 @@ import { axiosInstance } from "../client";
 
 export default function EditFolderDetails({ folderId, folderData, config, setCurrentFolder }) {
 
-    console.log("folderData",folderData)
-    console.log("name", folderData.name)
-    console.log("description", folderData.description)
-    console.log("completion date", folderData.desiredCompletionDate)
-    console.log("expedite", folderData.expedited)
-    console.log("confidential", folderData.confidential)
+    // console.log("folderData",folderData)
+    // console.log("name", folderData.name)
+    // console.log("description", folderData.description)
+    // console.log("completion date", folderData.desiredCompletionDate)
+    // console.log("expedite", folderData.expedited)
+    // console.log("confidential", folderData.confidential)
 
     let [isOpen, setIsOpen] = useState(false)
 
@@ -163,7 +163,7 @@ export default function EditFolderDetails({ folderId, folderData, config, setCur
                                 />
  
                                 <div className="flex mt-8 justify-end">
-                                    <Button onClick={() => setIsOpen(false)} color="secondary">Cancel</Button>
+                                    <Button type="button" onClick={() => setIsOpen(false)} color="secondary">Cancel</Button>
                                     <Button type="submit" onClick={() => setIsOpen(false)} color="primary" className="ml-2">Save Changes</Button>
                                 </div>
                             </form>

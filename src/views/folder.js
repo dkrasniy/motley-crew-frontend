@@ -8,6 +8,7 @@ import { useDropzone } from "react-dropzone";
 import RouteSlip from '../components/RouteSlip'
 import EditFolderDetails from '../components/EditFolderDetails'
 import FileList from "../components/FileList";
+import DeleteFolder from "../components/DeleteFolder";
 
 function Folder(props) {
   const { config, token } = useContext(AuthContext);
@@ -135,8 +136,7 @@ function Folder(props) {
           </div>
           <div>
             <EditFolderDetails folderId={params.folderId} folderData={currentFolder} config={config} setCurrentFolder={setCurrentFolder}/>
-
-          
+            <DeleteFolder folderId={params.folderId} config={config} folderData={currentFolder} />
           </div>
 
         </div>
