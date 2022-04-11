@@ -32,8 +32,8 @@ function CreateNew() {
       //console.log(r);
       const {data} = r  
       setCreatingFolder(false)
-
-      navigate(`/folder/${data.data.id}`); 
+      
+      navigate(`/folder/${data.id}`); 
  
     
     })
