@@ -9,7 +9,7 @@ import RouteSlip from '../components/RouteSlip'
 import EditFolderDetails from '../components/EditFolderDetails'
 import FileList from "../components/FileList";
 import DeleteFolder from "../components/DeleteFolder";
-
+import FileItem from "../components/FileItem";
 function Folder(props) {
   const { config, token } = useContext(AuthContext);
 
@@ -73,9 +73,8 @@ function Folder(props) {
   });
 
   const acceptedFileItems = acceptedFiles.map(file => (
-    <li key={file.path} className="border-t py-3">
-      {file.path} - {file.size} bytes
-    </li>
+    <FileItem key={file.path} name={file.path} pending={true}/>
+
   ));
 
   const fileRejectionItems = fileRejections.map(({ file, errors }) => (
@@ -124,15 +123,18 @@ function Folder(props) {
         <div className="flex justify-between items-center">
 
           <div>
-            <Link className="block" to={"/dashboard"}>
+            <Link className="block text-gray-700 text-sm" to={"/dashboard"}>
               Back
             </Link>
-            <b className="text-2xl my-2"> {currentFolder.name}</b>
-            <br /> Folder ID: {params.folderId}
+            <b className="text-2xl my-2 block"> {currentFolder.name}</b>
+            <span className="text-gray-500">
+            {/* Folder ID: {params.folderId} */}
             <p>Description: {currentFolder.description}</p>
             <p>Completion Date: {currentFolder.desiredCompletionDate}</p>
-            <p>Expedited: {currentFolder.expedited ? "Yes" : "No"}</p>
+            <div className="flex items-center space-x-2"><p>Expedited: {currentFolder.expedited ? "Yes" : "No"}</p>
             <p>Confidential: {currentFolder.confidential ? "Yes" : "No"}</p>
+            </div>
+            </span>
           </div>
           <div>
             <EditFolderDetails folderId={params.folderId} folderData={currentFolder} config={config} setCurrentFolder={setCurrentFolder}/>
@@ -154,12 +156,12 @@ function Folder(props) {
 
               <FileList files={filesInFolder}/>
 
-              <button {...getRootProps({ className: 'dropzone' })} className="my-4 bg-gray-50 p-8 rounded-xl w-full overflow-hidden">
+              <button {...getRootProps({ className: 'dropzone' })} className="my-4 border border-dashed dashed p-8 rounded-xl w-full overflow-hidden">
                 <input {...getInputProps()} className="bg-red-500 p-8 block" />
                 <p>Drag 'n' drop some files here, or click to select files</p>
                 <em>(Only *.jpeg and *.png images will be accepted)</em>
 
-                <div className="bg-gray-100 -mb-8 -mx-8 rounded-b-xl px-8  mt-8">
+                {acceptedFileItems.length > 0  ? <div className="border-t border-dashed -mb-8 -mx-8 rounded-b-xl px-8  mt-8">
                   <ul className="py-8 text-left">{acceptedFileItems}</ul>
                   {/* 
               {acceptedFileItems.length > 0 ? <div className="my-2"> <h4 className="mb-2"><b>Accepted files</b></h4>
@@ -167,7 +169,7 @@ function Folder(props) {
 
               {fileRejectionItems.length > 0 ? <div className="my-2"> <h4 className="mb-2"><b>Rejected files</b></h4>
               <ul>{fileRejectionItems}</ul></div> : null} */}
-                </div>
+                </div> : null}
               </button>
 
             </div>
