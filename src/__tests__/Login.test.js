@@ -1,21 +1,28 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 import { Login } from "../views/login";
 import { act } from "react-test-renderer";
 import App from '../App'
 
 test ("logging in using credentials", () => {
 
-    const root = document.createElement('div')
-    document.body.appendChild(root)
+    let testHistory, testLocation
     
     render(
         <MemoryRouter initialEntries={['/login']}>
           <App />
+          <Route
+            path='*'
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+              return null;
+            }}
+          />
         </MemoryRouter>,
-        root
+        node
       );
 
       act(() => {
@@ -27,6 +34,6 @@ test ("logging in using credentials", () => {
         signIn.dispatchEvent(new MouseEvent("click"))
       })
 
-    expect(document.querySelectorAll('header')).toBeDefined;
+    expect(testLocation.pathname)
 
 })
