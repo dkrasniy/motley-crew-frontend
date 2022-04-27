@@ -41,8 +41,8 @@ export default function Header() {
                 <div className='mt-8'>
                 <span class="uppercase text-gray-500 font-semibold text-xs tracking-wide mb-1 block">Templates</span>
                 <ul>
-                <li><Link to="/templates" className='hover:text-blue-500 py-2 block  transition'>Travel Expense</Link></li>
-                <li><Link to="/templates" className='hover:text-blue-500 py-2 block transition '>Telework Agreement</Link></li>
+                <li><Link to="/templates/travelExpense" className='hover:text-blue-500 py-2 block  transition'>Travel Expense</Link></li>
+                <li><Link to="/templates/teleworkAgreement" className='hover:text-blue-500 py-2 block transition '>Telework Agreement</Link></li>
                 <li><Link to="/dashboard" className='hover:text-blue-500 py-2 block transition text-blue-500'>Create New</Link></li>
 
                 </ul></div>
