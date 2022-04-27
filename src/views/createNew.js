@@ -46,16 +46,20 @@ function CreateNew() {
 
   return (
     <Layout>
-    <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
-    <div className="flex justify-between">
-    <b className="text-xl">Create new</b>  
-    </div>
+        <div className="container mx-auto px-4 md:px-6 py-10">
+      <div className="flex justify-between">
+      <b className="text-xl md:text-2xl text-gray-800">Create new</b> 
+    
+      </div>
+
+
+     
    
-    <div className="bg-gray-50 rounded-xl p-8 my-6">
+    <div className="bg-gray-50 rounded-xl p-8 my-6 max-w-3xl">
     
       <form className="mt-6" onSubmit={handleSubmit}>
 
-        <label htmlFor="folderName" className="text-left block text-sm font-medium text-gray-700">
+        <label htmlFor="folderName" className="mb-1 text-left block text-sm font-medium text-gray-700">
           Folder Name
         </label>
 
@@ -67,14 +71,14 @@ function CreateNew() {
           value={name}
           required={true}
           onChange={(e)=>setName(e.target.value)}
-          className="appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="shadow-sm appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
 
-        <label htmlFor="description" className="text-left block text-sm font-medium text-gray-700">
+        <label htmlFor="description" className="mb-1 text-left block text-sm font-medium text-gray-800">
           Description
         </label>
 
-        <input 
+        <textarea 
           id="description"
           name="description"
           type="description"
@@ -82,10 +86,10 @@ function CreateNew() {
           value={description}
           required={false}
           onChange={(e)=>setDescription(e.target.value)}
-          className="appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="shadow-sm appearance-none block w-full px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
 
-        <label htmlFor="desiredCompletionDate" className="text-left block text-sm font-medium text-gray-700">
+        <label htmlFor="desiredCompletionDate" className="mb-1 text-left block text-sm font-medium text-gray-800">
           Desired Completion Date
         </label>
 
@@ -97,10 +101,10 @@ function CreateNew() {
           value={desiredCompletionDate}
           required={false}
           onChange={(e)=>setDesiredCompletionDate(e.target.value)}
-          className="appearance-none block px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="w-full shadow-sm appearance-none block px-3 py-2 mb-4 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
 
-        <label htmlFor="expedited" className="text-left block text-sm font-medium text-gray-700">
+        <label htmlFor="expedited" className="mb-1 text-left block text-sm font-medium text-gray-700">
           Expedite
         </label>
 
