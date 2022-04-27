@@ -19,6 +19,9 @@ export default function FileItem({ file, name, pending }) {
             <div className="ml-6"> <span className="block font-semibold my-2">{fileName}</span>
 
                 { !pending && file.file ? <Button href={file.file} target="_blank" color="secondary" size="small" className="inline-flex">Open in new tab</Button> : null}
+                { !pending && file.file && file.id ? <Button to={`/folder/${file.parentFolder}/view/${file && file.id}/`} color="secondary" size="small" className="inline-flex">Open with viewer</Button> : null}
+
+       
             </div>
         </div>
     </div>

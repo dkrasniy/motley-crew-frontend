@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spinner } from "./atoms/Spinner";
 
-export default function FolderItem({ folder}) {
+export default function FolderItem({ folder }) {
     
  
     return <Link className="block bg-white  p-4 rounded-xl border border-gray-100" to={`/folder/${folder.id}`}>

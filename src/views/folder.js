@@ -100,10 +100,7 @@ function Folder(props) {
       .catch((e) => {
         setLoadingFolder(false);
       });
-
-
-
-
+ 
       axiosInstance
       // path, data, config
       .get(`/folder/${parseInt(params.folderId)}/files`, config)

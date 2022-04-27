@@ -7,6 +7,7 @@ import RequireAuth from '../components/ReqAuth'
 import PublicRoute from "../components/PublicRoute";
 import Inbox from "../views/inbox";
 import Folder from "../views/folder";
+import DocumentView from "../views/document-view";
 import Profile from "../views/profile";
 import PDFViewer from "../views/pdfViewer";
 
@@ -23,6 +24,8 @@ export default function Router() {
           <Route path="/" element={<Link to={"/login"}>Login</Link>} />
           <Route path="/dashboard" element={<RequireAuth><Inbox/></RequireAuth>} />
           <Route path="/folder/:folderId" element={<RequireAuth><Folder/></RequireAuth>} /> 
+          <Route path="/folder/:folderId/view/:fileId" element={<RequireAuth><DocumentView/></RequireAuth>} /> 
+
           <Route path="/account" element={<RequireAuth><Profile/></RequireAuth>} /> 
           {/* <Route path="/folder/:folderId/view/:fileid" element={<RequireAuth><PdfViewer/></RequireAuth>} /> */}
           <Route path="/testPdfView" element={<RequireAuth><PDFViewer/></RequireAuth>} />
