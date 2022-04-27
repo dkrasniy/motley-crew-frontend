@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../components/AuthProvider";
 import { axiosInstance } from "../client";
 import { Routes, Link, useParams, Route } from "react-router-dom";
@@ -11,7 +11,10 @@ import samplePDF from '../components/samplecalPERSform.pdf';
 
 export default function DocumentView() {
   const [currentlyViewingFile, setCurrentlyViewingFile] = useState(null);
+  const [docViewContainerWidth, setDocViewContainerWidth] = useState(800);
+
   const [error, setError] = useState(null);
+  const ref = useRef(null);
 
   const [loadingFolder, setLoadingFolder] = useState(true);
   const { config, token } = useContext(AuthContext);
@@ -53,35 +56,44 @@ export default function DocumentView() {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
+  useEffect(() => {
+    setDocViewContainerWidth(ref.current.offsetWidth);
+  }, [ref]);
+
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 md:px-6 py-10 bg-gray-200 ">
-        <div className="flex justify-between">
-
-
-
-
-          <div>
-            <Link className="block text-gray-700 text-sm" to={`/folder/${params.folderId}`}>
+      <div className="border-b border-gray-100 px-4 md:px-6 py-6 bg-white sticky top-0 z-10">
+      <Link className="block text-gray-700 text-sm" to={`/folder/${params.folderId}`}>
               Back
             </Link>
+      <h1 className="text-lg md:text-xl text-gray-700">{loadingFolder ? <Spinner /> : <>  
+               <b>{currentlyViewingFile && currentlyViewingFile[0].name}</b></>}</h1>
+             
+        {numPages} pages
+      
+    
+      </div>
+      <div className="bg-blue-500  p-3 text-white text-center  font-semibold py-5 text-sm">
+            Setup document for signing
+          </div>
+      <div className=" justify-between flex">
+        
+        <div className="flex justify-center w-full align-center"  ref={ref}>  
+          <div> 
 
             {error ? <div>{error}</div> :
 
+
               (loadingFolder ? <Spinner /> : <>  
-               <b className="text-xl md:text-2xl text-gray-800">{currentlyViewingFile && currentlyViewingFile[0].name}</b>
-
-               {/* {currentlyViewingFile && currentlyViewingFile[0].file} */}
                
-
                 <Document
-                  
                   file={{
                     url:
                     currentlyViewingFile && currentlyViewingFile[0].file,
                   }}
                   onLoadSuccess={onDocumentLoadSuccess}
+                  className="mx-auto"
                 >
                   {Array.from(
                     new Array(numPages),
@@ -89,6 +101,9 @@ export default function DocumentView() {
                       <Page
                         key={`page_${index + 1}`}
                         pageNumber={index + 1}
+                        className={"shadow-xl mb-4"}
+                        width={docViewContainerWidth*.5} 
+
                       />
                     ),
                   )}
@@ -97,10 +112,9 @@ export default function DocumentView() {
 
           </div>
         </div>
+       
       </div>
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 right-0 min-h-screen bg-gray-100">
-        sdklmfdsklfm
-      </div>
+     
     </Layout>
   );
 }

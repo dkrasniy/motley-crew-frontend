@@ -151,7 +151,7 @@ function Folder(props) {
               <RouteSlip routeSlipItems={currentFolder.routeSlips} />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">
-              <h3 className="font-semibold mb-6">Folder Contents ({filesInFolder.length})</h3>
+              <h3 className="font-bold text-lg mb-6">Folder Contents ({filesInFolder.length})</h3>
 
               <FileList files={filesInFolder}/>
 

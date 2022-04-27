@@ -13,7 +13,14 @@ export default function FileList({ folderData, loading, files}) {
     } 
 
     if(files && files.length > 0) {
-        return <div className="space-y-2">
+        return <div>
+
+           <div className="grid grid-cols-12 font-bold text-sm text-gray-700 mb-3">
+                <div className="col-span-8">Name</div>
+               <div className="col-span-3">Actions</div>
+               <div className="col-span-1">File Owner</div>
+
+               </div> 
          
         {files.map((file, f)=><FileItem file={file} key={f}/>)}</div>
     }
