@@ -11,6 +11,7 @@
     "axios": "^0.25.0",
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
     "react-dropzone": "^12.0.4",
     "react-pdf": "^5.7.2",
@@ -42,10 +43,10 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "babel-jest": "^28.0.1",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/user-event": "^7.2.1",
     "autoprefixer": "^9.8.8",
+    "babel-jest": "^28.0.1",
     "postcss": "^7.0.39",
     "react-error-overlay": "^6.0.9",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
