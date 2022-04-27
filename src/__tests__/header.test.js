@@ -5,14 +5,10 @@ import React from 'react'
 import {MemoryRouter, Router} from 'react-router-dom'
 
 import '@testing-library/jest-dom'
-import {App} from '../App'
+import Header from "../components/Header"
 
-test ("login screen renders", () => {
-    const history = createMemoryHistory()
-    render(
-        <Router history={history}>
-            <App/>
-        </Router>
-    )
-    expect(screen.getByText(/Welcome/i)).toBeInTheDocument()
+test ('rendering header', async () => {
+  render (<Header/>, {wrapper: MemoryRouter})
+
+  expect(screen.getByText(/Home/i)).toBeInTheDocument()
 })
