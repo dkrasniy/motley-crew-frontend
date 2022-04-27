@@ -22,6 +22,12 @@ export default function DocumentView() {
   const [loadingFolder, setLoadingFolder] = useState(true);
   const { config, token } = useContext(AuthContext);
 
+
+  const [runningScan, setRunningScan] = useState(false);
+  const [scanBoxResults, setScanBoxResults] = useState(null);
+
+
+  
   let params = useParams();
 
   useEffect(() => {
@@ -64,6 +70,25 @@ export default function DocumentView() {
   }, [ref]);
 
 
+  function runScan(){
+    setRunningScan(true)
+    axiosInstance
+    // path, data, config
+    .get(`/file/${params.fileId}/scan`, config)
+    .then((r) => {
+
+      console.
+      setScanBoxResults(r)
+
+    })
+    .catch((e) => {
+      console.log('error', e)
+      setLoadingFolder(false)
+
+    });
+
+  }
+
   return (
     <Layout>
       <div className="border-b border-gray-100 px-4 md:px-6 py-6 bg-white sticky top-0 z-10">
@@ -74,6 +99,9 @@ export default function DocumentView() {
                <b>{currentlyViewingFile && currentlyViewingFile[0].name}</b></>}</h1>
              
         {numPages} pages
+
+
+        <button onClick={()=>runScan()}>Scan</button>
       
     
       </div>
