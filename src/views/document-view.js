@@ -8,6 +8,10 @@ import Layout from "../components/Layout";
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import samplePDF from '../components/samplecalPERSform.pdf';
 
+const sigBoxes = [
+  {page: 1, x: 40, y: 20, h: 40, w:200},
+  {page: 1, x: 400, y: 60, h: 40, w:150},
+  {page: 2, x: 400, y: 60, h: 40, w:150}]
 
 export default function DocumentView() {
   const [currentlyViewingFile, setCurrentlyViewingFile] = useState(null);
@@ -98,13 +102,25 @@ export default function DocumentView() {
                   {Array.from(
                     new Array(numPages),
                     (el, index) => (
+                      <div>
                       <Page
                         key={`page_${index + 1}`}
                         pageNumber={index + 1}
                         className={"shadow-xl mb-4"}
                         width={docViewContainerWidth*.5} 
+                        onClick={()=>console.log("INdex")}
 
-                      />
+                      ><div className="signature-boxes-data">
+                        {sigBoxes && sigBoxes.filter(box => box.page == index+1).map((box, b)=> (
+                          <div className="sig-box bg-purple-100 absolute rounded-lg text-purple-600 font-semibold flex items-center justify-center text-sm select-none	" style={{top: box.y+'px', left: box.x+'px', height: box.h + 'px', width: box.w + 'px'}}>
+                            Sign Here
+                          </div>
+                        ))}
+                        </div>
+                        
+                        </Page>
+                      
+                      </div>
                     ),
                   )}
                 </Document></>)
