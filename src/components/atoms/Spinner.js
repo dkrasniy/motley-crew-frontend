@@ -6,6 +6,7 @@ const sizes = {
   "2": "h-2 w-2",
   "4": "h-4 w-4",
   "6": "h-6 w-6",
+  "12": "h-12 w-12",
 };
 
 export const Spinner = ({
