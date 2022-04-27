@@ -28,7 +28,7 @@ export default function Header() {
                 </div>
 
                 <nav className="px-8 py-4 text-sm font-semibold text-gray-800">
-                <span class="uppercase text-gray-500 font-semibold text-xs tracking-wide mb-1 block">Primary</span>
+                <span className="uppercase text-gray-500 font-semibold text-xs tracking-wide mb-1 block">Primary</span>
                 <ul>
                 <li><Link to="/dashboard" className='hover:text-blue-500 py-2 flex items-center transition'>
                 {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" className='w-4 h-4 text-gray-500 mr-2'><path fill="currentColor" class="fa-primary" d="M266.9 7.918C278.1-2.639 297-2.639 309.1 7.918L565.1 231.9C578.4 243.6 579.7 263.8 568.1 277.1C556.4 290.4 536.2 291.7 522.9 280.1L288 74.52L53.07 280.1C39.77 291.7 19.56 290.4 7.917 277.1C-3.72 263.8-2.372 243.6 10.93 231.9L266.9 7.918z"/><path fill="currentColor"  class="fa-secondary" d="M288 74.52L512.1 270.6L512.5 447.9C512.6 483.3 483.9 512 448.5 512H128.1C92.74 512 64.09 483.4 64.07 448L64.02 270.5L288 74.52z"/></svg> */}
