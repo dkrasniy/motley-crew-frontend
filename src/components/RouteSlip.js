@@ -43,16 +43,22 @@ export default function RouteSlip({ routeSlipItems }) {
 
 
  
-        {routeSlipItemsList && routeSlipItemsList.map((item, i)=> {
+        {routeSlipItemsList && routeSlipItemsList.sort((a, b) => (a.orderNum > b.orderNum) ? 1 : -1).map((item, i)=> {
             console.log("item",item)
             return (
-                <div className="bg-gray-50 rounded-lg p-3 text-sm my-2">Item</div>
+                <div className="bg-gray-50 rounded-lg p-3 text-sm my-2">
+                    {item.orderNum}
+                    <div>
+
+                        <b>{item.assignee.fullName}</b>
+                    </div>
+                    {item.actionType}</div>
             )
             })}
 
 
-        <input type="text" value={userSearcAhead} onChange={(e) => setUserSearchAhead(e.target.value)} placeholder="start typing" />
-        {searchResults.map((user,u)=> <span className="block my-1 border p-2">{user.username}</span>)}
+        <input type="text" value={userSearcAhead} onChange={(e) => setUserSearchAhead(e.target.value)} className="rounded-lg w-full border border-gray-100 p-3" placeholder="start typing" />
+        {searchResults.map((user,u)=> <span className="block my-1 border p-2 rounded-lg bg-blue-500 text-white">{user.username}</span>)}
         
         <span className="text-blue-600 my-4 font-semibold text-sm block">Add Viewer</span>
 

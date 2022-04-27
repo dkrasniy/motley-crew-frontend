@@ -135,7 +135,7 @@ function Folder(props) {
             </div>
             </span>
           </div>
-          <div>
+          <div className="flex items-center">
             <EditFolderDetails folderId={params.folderId} folderData={currentFolder} config={config} setCurrentFolder={setCurrentFolder}/>
             <DeleteFolder folderId={params.folderId} config={config} folderData={currentFolder} />
           </div>
@@ -148,7 +148,7 @@ function Folder(props) {
 
           <section className="flex border-t flex-wrap">
             <div className="w-full md:w-1/3 xl:w-1/4 bg-white py-6 px-3 md:border-r">
-              <RouteSlip routeSlipItems={currentFolder.routeSlips} />
+              <RouteSlip routeSlipItems={currentFolder.routeSlips && currentFolder.routeSlips[0]  && currentFolder.routeSlips[0].routeItems} />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">
               <h3 className="font-bold text-lg mb-6">Folder Contents ({filesInFolder.length})</h3>

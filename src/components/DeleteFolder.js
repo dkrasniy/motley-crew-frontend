@@ -27,7 +27,7 @@ export default function DeleteFolder({ folderId, config, folderData}) {
     }
 
     return (
-        <><Button className="mt-4" color="secondary" onClick={() => setIsOpen(true)}>Delete Folder</Button>
+        <><Button color="secondary" className="ml-2" onClick={() => setIsOpen(true)}>More</Button>
 
             <Transition show={isOpen} as={Fragment}>
                 <Dialog open={isOpen} onClose={() => setIsOpen(false)}
