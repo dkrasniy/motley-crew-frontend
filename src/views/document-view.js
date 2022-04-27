@@ -325,7 +325,7 @@ export default function DocumentView() {
                             {scanBoxResults && scanBoxResults.filter(box => box[0] == index).map((box, b) => {
                               console.log("BOX", box)
                               return (
-                              <div className="sig-box bg-purple-100 absolute rounded-lg text-purple-600 font-semibold flex items-center justify-center text-sm select-none"
+                              <div className="sig-box bg-purple-100 absolute border-2 border-red-500  text-purple-600 font-semibold flex items-center justify-center text-sm select-none"
                                style={{ top: box[3]*ratio + 'px', left: box[2]*ratio + 'px', height: box[5]*ratio + 'px', width: box[4]*ratio + 'px' }}
                                >
                                     -
