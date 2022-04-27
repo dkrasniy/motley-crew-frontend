@@ -309,7 +309,7 @@ export default function DocumentView() {
                   }}
                   onLoadSuccess={onDocumentLoadSuccess}
                   className="mx-auto"
-                >
+                 >
                   {Array.from(
                     new Array(numPages),
                     (el, index) => (
