@@ -5,8 +5,13 @@ function Layout({ children }) {
 
 
     return <>
+       
         <Header />
-        {children}
+       <div className='md:pl-64 flex flex-col flex-1  '>
+               {children}
+       </div>
+      
+    
     </>
 }
 

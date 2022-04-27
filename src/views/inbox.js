@@ -31,9 +31,9 @@ function Inbox() {
 
   return (
     <Layout>
-    <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
+    <div className="container mx-auto px-4 md:px-6 py-10">
       <div className="flex justify-between">
-      <b className="text-xl">Inbox</b> 
+      <b className="text-xl md:text-2xl text-gray-800">Inbox</b> 
       <Button to={'/create/new'} color="secondary" className="inline-flex">New Folder</Button> 
       </div>
      

@@ -119,14 +119,16 @@ function Folder(props) {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto my-6 px-4 md:px-6">
-        <div className="flex justify-between items-center">
+       <div className="container mx-auto px-4 md:px-6 py-10">
+      <div className="flex justify-between">
+      
 
+     
           <div>
             <Link className="block text-gray-700 text-sm" to={"/dashboard"}>
               Back
             </Link>
-            <b className="text-2xl my-2 block"> {currentFolder.name}</b>
+            <b className="text-xl md:text-2xl text-gray-800">{currentFolder.name}</b>
             <span className="text-gray-500">
             {/* Folder ID: {params.folderId} */}
             <p>Description: {currentFolder.description}</p>
@@ -148,8 +150,8 @@ function Folder(props) {
           {loadingFolder ? <Spinner /> : null}
 
           <section className="flex border-t flex-wrap">
-            <div className="w-full md:w-1/3 xl:w-1/4 bg-white py-6 px-2 md:border-r">
-              <RouteSlip />
+            <div className="w-full md:w-1/3 xl:w-1/4 bg-white py-6 px-3 md:border-r">
+              <RouteSlip routeSlipItems={currentFolder.routeSlips} />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">
               <h3 className="font-semibold mb-6">Folder Contents ({filesInFolder.length})</h3>
@@ -159,8 +161,7 @@ function Folder(props) {
               <button {...getRootProps({ className: 'dropzone' })} className="my-4 border border-dashed dashed p-8 rounded-xl w-full overflow-hidden">
                 <input {...getInputProps()} className="bg-red-500 p-8 block" />
                 <p>Drag 'n' drop some files here, or click to select files</p>
-                <em>(Only *.jpeg and *.png images will be accepted)</em>
-
+ 
                 {acceptedFileItems.length > 0  ? <div className="border-t border-dashed -mb-8 -mx-8 rounded-b-xl px-8  mt-8">
                   <ul className="py-8 text-left">{acceptedFileItems}</ul>
                   {/* 

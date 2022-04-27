@@ -54,17 +54,20 @@ export default function DeleteFolder({ folderId, config, folderData}) {
                             // leaveTo="opacity-0 scale-95"
                         >
 
-                            <form onSubmit={handleSubmit} className="relative bg-white rounded max-w-xl mx-auto p-8 rounded-xl">
+                            <form onSubmit={handleSubmit} className="relative bg-white rounded max-w-lg w-full mx-auto p-8 rounded-xl">
                                 <Dialog.Title className={"font-bold text-lg"}>Delete {folderData.name}</Dialog.Title>
                                 <Dialog.Description>
                                     Confirming this action will delete this folder <br />
+                                    <div className="bg-gray-50 text-gray-700 rounded-xl p-4 my-4">
                                     Folder Name: {folderData.name} <br />
                                     Folder ID: {folderId} <br />
+                                    </div>
+                                    
                                 </Dialog.Description>                                
  
                                 <div className="flex mt-8 justify-end">
                                     <Button type="button" onClick={() => setIsOpen(false)} color="secondary">Cancel</Button>
-                                    <Button type="submit" onClick={() => setIsOpen(false)} color="primary" className="ml-2">Delete</Button>
+                                    <Button type="submit" onClick={() => setIsOpen(false)} color="red" className="ml-2">Delete</Button>
                                 </div>
                             </form>
                         </Transition.Child>
