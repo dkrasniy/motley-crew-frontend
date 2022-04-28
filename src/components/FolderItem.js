@@ -8,8 +8,8 @@ export default function FolderItem({ folder }) {
     
  
     return <Link className="block bg-white  p-4 rounded-xl border border-gray-100" to={`/folder/${folder.id}`}>
-{folder.id}
-        <span className="font-bold block">{folder.name}</span>
+
+        <span className="font-bold block text-lg">{folder.name}</span>
         {folder.description ? <span className="block text-gray-500 mt-1">{folder.description}</span>: null}
 
         {folder.expedited ? <span className="block text-gray-500 mt-1 text-red-500 text-xs font-semibold">Expedited</span>: null}

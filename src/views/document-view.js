@@ -581,10 +581,10 @@ export default function DocumentView() {
           <Button onClick={() => runScan()} loading={runningScan}>Scan</Button>
         </div>
       </div>
-      <div className="bg-blue-500  p-3 text-white text-center  font-semibold py-5 text-sm">
+      <div className="bg-blue-600  p-3 text-white text-center  font-semibold py-5 text-sm">
         Setup document for signing
       </div>
-      <div className=" justify-between flex">
+      <div className=" justify-between flex mt-6">
 
         <div className="flex justify-center w-full align-center" ref={ref}>
           <div>

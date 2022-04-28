@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useCallback } from "react";
 import { AuthContext } from "../components/AuthProvider";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { axiosInstance } from "../client";
+import Button from "./atoms/Button";
 
 export default function RouteSlip({ routeSlipItems }) {
 
@@ -84,21 +85,31 @@ export default function RouteSlip({ routeSlipItems }) {
             console.log("item", item)
             return (
                 <div className="bg-gray-50 rounded-lg p-3 text-sm my-2">
-                    {item.orderNum}
-                    <div>
-
-                        <b>{item.assignee.fullName}</b>
+      
+                    <div> 
+                   <b>{item.assignee.fullName}</b>
                     </div>
                     {item.actionType}</div>
             )
         })}
 
-
+<div className="border-t border-b border-gray-100 my-6 py-4">
+    
+<span className="text-blue-600 mb-1 font-semibold text-sm block">Add Viewer</span>
         <input type="text" value={userSearcAhead} onChange={(e) => setUserSearchAhead(e.target.value)} className="rounded-lg w-full border border-gray-100 p-3" placeholder="start typing" />
-        {searchResults.map((user, u) => <span className="block my-1 border p-2 rounded-lg bg-blue-500 text-white">{user.username}</span>)}
+        {searchResults.map((user, u) =>
+         
+        <span onClick={()=>{
 
-        <span className="text-blue-600 my-4 font-semibold text-sm block">Add Viewer</span>
+            setRouteSlipItemsList(routeSlipItems => [...routeSlipItems, {actionType: "view", orderNum: routeSlipItems.length + 1, assignee: {...user}}])
+            setUserSearchAhead('')
+            setSearchResults([])
+        }} className="block my-1 border p-3 cursor-pointer rounded-lg bg-blue-600 text-white">{user.username}</span>)}
 
+
+
+</div>
+<Button>Start Route</Button>
 
     </div>
 
