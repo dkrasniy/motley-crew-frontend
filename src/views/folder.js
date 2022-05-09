@@ -144,6 +144,9 @@ function Folder(props) {
                   currentFolder.routeSlips[0] &&
                   currentFolder.routeSlips[0].routeItems
                 }
+                routeSlip={
+                  currentFolder.routeSlips && currentFolder.routeSlips[0]
+                }
               />
             </div>
             <div className="w-full md:w-2/3 xl:w-3/4 px-2 md:p-8">

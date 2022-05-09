@@ -8,7 +8,7 @@ export default function FileList({
   files,
   setFetchFolderRef,
 }) {
-  console.log("folder list data", files);
+  // console.log("folder list data", files);
 
   if (loading) {
     return <Spinner />;

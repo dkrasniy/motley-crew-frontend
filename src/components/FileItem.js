@@ -19,7 +19,7 @@ export default function FileItem({ file, name, pending, setFetchFolderRef }) {
       axiosInstance
         .delete(`file/${file.id}`, requestConfig)
         .then((r) => {
-          console.log(r.data);
+          // console.log(r.data);
           setFetchFolderRef((state) => 1 + state);
         })
         .catch((e) => {
