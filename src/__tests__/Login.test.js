@@ -6,13 +6,11 @@ import {MemoryRouter, Router} from 'react-router-dom'
 
 import '@testing-library/jest-dom'
 import {App} from '../App'
+import PublicRoute from '../components/PublicRoute'
 
-test ("login screen renders", () => {
-    const history = createMemoryHistory()
-    render(
-        <Router history={history}>
-            <App/>
-        </Router>
-    )
+test ("login screen renders", async () => {
+    render(<PublicRoute/>, {wrapper: MemoryRouter})
+
     expect(screen.getByText(/Welcome/i)).toBeInTheDocument()
 })
+
