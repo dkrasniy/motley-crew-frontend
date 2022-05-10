@@ -15,7 +15,7 @@ import Incoming from "../views/incoming";
 import Completed from "../views/completed";
 import TravelExpense from "../views/travel-expense";
 import TeleworkAgreement from "../views/telework-agreement";
-
+import SignDocument from "../views/signDocument";
 
 export default function Router() {
 
@@ -38,6 +38,7 @@ export default function Router() {
           <Route path="/outgoing" element={<RequireAuth><Outgoing /></RequireAuth>} />
           <Route path="/incoming" element={<RequireAuth><Incoming /></RequireAuth>} />
           <Route path="/completed" element={<RequireAuth><Completed /></RequireAuth>} />
+          <Route path="/complete-routeitem/:routeSlipId/:routeItemId" element={<RequireAuth><SignDocument /></RequireAuth>} />
 
           <Route path="/templates/travelExpense" element={<RequireAuth><TravelExpense /></RequireAuth>} />
           <Route path="/templates/teleworkAgreement" element={<RequireAuth><TeleworkAgreement /></RequireAuth>} />

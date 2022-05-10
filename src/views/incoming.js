@@ -58,7 +58,7 @@ function Incoming() {
             <p key={m.id} className="flex justify-between">
               <span>➡️ {m.contents}</span>{" "}
               <Link
-                to="/dashboard"
+                to={`/complete-routeitem/${m.routeItem.routeSlip}/${m.routeItem.id}`}
                 className="text-blue-500 hover:text-blue-400 underline"
               >
                 Complete Here

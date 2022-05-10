@@ -34,7 +34,9 @@ export default function RouteSlip({ routeSlipItems, routeSlip }) {
     };
     axiosInstance
       .post(`route-slip/${routeSlipId}/start`, requestConfig)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        window.alert(`Route ${routeSlipId} started`);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -137,9 +139,11 @@ export default function RouteSlip({ routeSlipItems, routeSlip }) {
           </span>
         ))}
       </div>
-      <span>route started? {routeSlip?.routeStartTime ? "Yes" : "No"}</span>
+      <span className="inline-block">
+        route started? {routeSlip?.routeStartTime ? "Yes" : "No"}
+      </span>
       {routeSlip?.routeStartTime ? (
-        <span onClick={handleStartRoute}>Route already Started</span>
+        <p className="border rounded p-1">Route already Started</p>
       ) : (
         <Button onClick={handleStartRoute}>Start Route</Button>
       )}
