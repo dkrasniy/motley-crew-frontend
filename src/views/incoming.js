@@ -60,6 +60,8 @@ function Incoming() {
               <Link
                 to={`/complete-routeitem/${m.routeItem.routeSlip}/${m.routeItem.id}`}
                 className="text-blue-500 hover:text-blue-400 underline"
+                target={"_blank"}
+                referrerPolicy="no-referrer"
               >
                 Complete Here
               </Link>
