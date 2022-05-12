@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useMemo, useRef } from "react";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-import Layout from "../components/Layout";
-import Button from "../components/atoms/Button";
+
 import { Spinner } from "../components/atoms/Spinner";
 import { axiosInstance } from "../client";
 import { AuthContext } from "../components/AuthProvider";
