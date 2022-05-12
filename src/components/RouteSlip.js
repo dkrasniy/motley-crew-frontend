@@ -6,8 +6,8 @@ import Button from "./atoms/Button";
 
 export default function RouteSlip({ routeSlipItems, routeSlip }) {
   const routeSlipId = routeSlip?.id;
-  const [userSearcAhead, setUserSearchAhead] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  // const [userSearcAhead, setUserSearchAhead] = useState("");
+  // const [searchResults, setSearchResults] = useState([]);
   const [routeSlipItemsList, setRouteSlipItemsList] = useState(null);
 
   const { config, token } = useContext(AuthContext);
@@ -40,21 +40,21 @@ export default function RouteSlip({ routeSlipItems, routeSlip }) {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    if (userSearcAhead.length > 2) {
-      //   console.log("search for: ", userSearcAhead);
+  // useEffect(() => {
+  //   if (userSearcAhead.length > 2) {
+  //     //   console.log("search for: ", userSearcAhead);
 
-      axiosInstance
-        // path, data, config
-        .get(`/user/search?query=${userSearcAhead}`, config)
-        .then((r) => {
-          setSearchResults(r.data.users);
-        })
-        .catch((e) => {
-          console.log("error", e);
-        });
-    }
-  }, [userSearcAhead]);
+  //     axiosInstance
+  //       // path, data, config
+  //       .get(`/user/search?query=${userSearcAhead}`, config)
+  //       .then((r) => {
+  //         setSearchResults(r.data.users);
+  //       })
+  //       .catch((e) => {
+  //         console.log("error", e);
+  //       });
+  //   }
+  // }, [userSearcAhead]);
 
   return (
     <div>
@@ -108,7 +108,7 @@ export default function RouteSlip({ routeSlipItems, routeSlip }) {
             );
           })}
 
-      <div className="border-t border-b border-gray-100 my-6 py-4">
+      {/* <div className="border-t border-b border-gray-100 my-6 py-4">
         <span className="text-blue-600 mb-1 font-semibold text-sm block">
           Add Viewer
         </span>
@@ -138,7 +138,7 @@ export default function RouteSlip({ routeSlipItems, routeSlip }) {
             {user.username}
           </span>
         ))}
-      </div>
+      </div> */}
       <span className="inline-block">
         route started? {routeSlip?.routeStartTime ? "Yes" : "No"}
       </span>
