@@ -1,7 +1,7 @@
 describe('test folder functions', () => {
     it ('new folder', () => {
         // Login
-        cy.visit('http://localhost:3000/login')
+        cy.visit('https://motleycrewdev.com/login')
         cy.findByRole('button', {name: /sign in/i}).click()
         // Create new folder
         cy.findByRole('link', {name: /new folder/i}).click()
@@ -14,5 +14,9 @@ describe('test folder functions', () => {
         // Return home and assert new folder was created
         cy.findByRole('link', {name: /home/i}).click()
         cy.findByText(/test folder creation/i).should('be.visible')
+        // Remove test folder creation
+        cy.findByText(/test folder creation/i).click()
+        cy.findByRole('button', {name: /more/i}).click()
+        cy.findByRole('button', {name: /delete/i}).click()
     })
 })
