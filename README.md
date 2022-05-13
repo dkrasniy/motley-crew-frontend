@@ -17,6 +17,7 @@ Our application will handle routing, reviewing and digitally signing documents a
 ## Clone the repo
 
 You can clone this project by typing `git clone https://github.com/dkrasniy/motley <FOLDER_NAME>`
+
 Then type `cd <FOLDER_NAME>` to get inside the root of the project
 
 ## Available Scripts
