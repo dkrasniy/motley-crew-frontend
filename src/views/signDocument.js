@@ -25,7 +25,7 @@ const ConfirmSign = ({ handleConfirm, type }) => {
     >
       <div className="flex justify-center">
         <button
-          className="px-1 bg-gray-100 border rounded"
+          className="px-1 bg-gray-100 border rounded my-2"
           onClick={handleConfirm}
         >
           complete {type}
@@ -54,7 +54,7 @@ const CompleteSignBox = ({ field, setSignedFields }) => {
       render = "complete";
     }
     setSignedFields((state) => {
-      console.log(" > huh?:", state);
+      // console.log(" > huh?:", state);
       const temp = [...state];
       temp.push({
         ...field,
@@ -128,10 +128,11 @@ function SignDocument() {
     const pages = pdfDoc.getPages();
 
     signedFields.forEach((field) => {
-      console.log(" > in pdf lib:", field);
+      // console.log(" > in pdf lib:", field);
       const page = pages[field.page_num];
       const { width, height } = page.getSize();
-      page.drawText("duh", {
+      // console.log(typeof field.render);
+      page.drawText(field.render, {
         x: field.xpos,
         y: height - field.ypos - 18,
         size: 18,
@@ -142,6 +143,38 @@ function SignDocument() {
 
     const pdfBytes = await pdfDoc.save();
 
+    /**
+     * 
+
+    // console.log(pdfBytes);
+    var blob = new Blob(pdfBytes, { type: "application/pdf" });
+
+    var formData = new FormData();
+    formData.append("file", blob, currentlyViewingFile.name);
+
+    let formConfig = {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryrbD7RZFR5iPWDPXE",
+      },
+    };
+
+    axiosInstance
+      .post(
+        `/route-slip-step/${routeSlipId}/${routeItemId}`,
+        formData,
+        formConfig
+      )
+      .then((r) => {
+        console.log(r.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+   
+    */
     // Trigger the browser to download the PDF document
     // download(pdfBytes, "pdf-lib_modification_example.pdf", "application/pdf");
     const durl = window.URL.createObjectURL(new Blob([pdfBytes]));
@@ -164,7 +197,7 @@ function SignDocument() {
     axiosInstance
       .get(`/route-slip-step/${routeSlipId}/${routeItemId}`, requestCreds)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setCurrentlyViewingFile(res.data.file);
         setFormFields(res.data.formFields);
         setRouteItem(res.data);
@@ -191,9 +224,9 @@ function SignDocument() {
     setDocViewContainerWidth(ref.current.offsetWidth * 0.7);
   }, [ref]);
 
-  useEffect(() => {
-    console.log(signedFields);
-  }, [signedFields]);
+  // useEffect(() => {
+  //   console.log(signedFields);
+  // }, [signedFields]);
 
   const coolDoc = useMemo(
     () => (
