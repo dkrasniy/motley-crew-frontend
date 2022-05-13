@@ -1,10 +1,32 @@
-# Getting Started with Create React App
+<img src="https://raw.githubusercontent.com/dkrasniy/motley-crew-frontend/main/src/logo.png" alt="logo" width="200"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Motley Crew
+
+Document Routing and Approval Application
+
+## Description
+
+Our application will handle routing, reviewing and digitally signing documents and pdfs.  The goal was to create a seamless process of signing and finalizing documents, in a way that fits the specific needs of our client. Features of the software include creating signature profiles, uploading scanned PDF or word documents, linear or parallel routing, an interface for identifying signature and date areas on documents.
+
+## tl;dr
+
+- This is the frontend portion of the project, which uses react.
+- The backend is found in a separate repo [here](https://github.com/maxshay/motley-crew-django-backend).
+- Other prerequisites to run the project include a Postgresql instance, a Redis instance, and an Amazon S3 account.
+
+## Clone the repo
+
+You can clone this project by typing `git clone https://github.com/dkrasniy/motley <FOLDER_NAME>`
+
+Then type `cd <FOLDER_NAME>` to get inside the root of the project
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn`
+
+To install all the required node modules
 
 ### `yarn start`
 
@@ -29,42 +51,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Maksim Shaynyuk
+David Krasniy
+Michael Vizcarra
+Trevor Ahlberg
+Jose Torres
+Ethan Covert

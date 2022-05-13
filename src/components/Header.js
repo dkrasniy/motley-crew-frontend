@@ -1,11 +1,30 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useEffect, useState } from "react";
 import logo from "../components/logo.svg";
 import { AuthContext } from "../components/AuthProvider";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
+import { axiosInstance } from "../client/index";
 
 export default function Header() {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, token } = useContext(AuthContext);
+  const [messageCount, setMessageCount] = useState(0);
+
+  useEffect(() => {
+    let requestConfig = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    axiosInstance
+      // path, data, config
+      .get(`/notifications`, requestConfig)
+      .then((r) => {
+        setMessageCount(r.data.count);
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
+  }, []);
 
   return (
     <header className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 border-r border-gray-100">
@@ -17,7 +36,7 @@ export default function Header() {
               {/* <img className="h-12 mr-2  bg-blue-600 w-12 rounded-full" src={logo} /><b className='text-xl text-gray-800'></b> */}
               {/* <span className='text-gray-400 ml-1 text-xs group-hover:opacity-100 opacity-0 transition duration-500'>By Motley Crew</span> */}
 
-              <div className="h-14 w-14 p-1 rounded-full bg-blue-600 flex items-center justify-center text-white bg-blue-500">
+              <div className="h-14 w-14 p-1 rounded-full bg-blue-600 flex items-center justify-center text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-8 h-8"
@@ -66,7 +85,7 @@ export default function Header() {
                   to="/incoming"
                   className="hover:text-blue-500 py-2 block transition"
                 >
-                  Incoming
+                  Incoming {!!messageCount && messageCount.toString()}
                 </Link>
               </li>
               <li>

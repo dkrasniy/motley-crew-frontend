@@ -53,10 +53,16 @@ function Incoming() {
         <div className="flex justify-between">
           <b className="text-xl md:text-2xl text-gray-800">Incoming</b>
         </div>
-        <div className="bg-gray-50 rounded-xl p-8 my-6 max-w-3xl">
+        <div className="bg-gray-50 rounded-xl py-4 px-8 my-6 max-w-3xl">
           {messages.map((m) => (
-            <p key={m.id} className="flex justify-between">
-              <span>➡️ {m.contents}</span>{" "}
+            <p
+              key={m.id}
+              className="flex justify-between border-b border-gray-500 py-4 last:border-b-0"
+            >
+              <span>
+                <span className="inline-block w-2 h-2 rounded-full bg-red-500"></span>{" "}
+                {m.contents}
+              </span>{" "}
               <Link
                 to={`/complete-routeitem/${m.routeItem.routeSlip}/${m.routeItem.id}`}
                 className="text-blue-500 hover:text-blue-400 underline"
@@ -68,14 +74,14 @@ function Incoming() {
             </p>
           ))}
         </div>
-        <div className="bg-gray-50 rounded-xl p-8 my-6 max-w-3xl mt-4">
+        {/* <div className="bg-gray-50 rounded-xl p-8 my-6 max-w-3xl mt-4">
           <span>messsage object looks like:</span>
           <pre>
             <code className="text-sm overflow-x-scroll">
               {JSON.stringify(messages[0], null, 2)}
             </code>
           </pre>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
